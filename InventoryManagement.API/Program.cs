@@ -35,8 +35,8 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // 2. DbContext
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
-    ?? "Server=(localdb)\\mssqllocaldb;Database=InventoryManagementDb;Trusted_Connection=True;MultipleActiveResultSets=true";
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found. Set it via appsettings.json or the ConnectionStrings__DefaultConnection environment variable.");
 
 Log.Information("Starting with Connection String: {ConnectionString}", connectionString);
 
